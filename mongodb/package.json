@@ -1,0 +1,17 @@
+{
+  "name": "express4-sample-mongodb",
+  "main": "server.js",
+  "scripts": {
+    "clean": "rm -rf ./node_modules",
+    "dev": "./node_modules/.bin/nodemon server.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "body-parser": "~1.0.1",
+    "express": "~4.0.0",
+    "mongoose": "^4.7.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
