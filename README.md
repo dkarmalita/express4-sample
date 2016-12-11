@@ -3,6 +3,8 @@
 ## Features
 
 * Handle [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) for an item (let's use Dino for the case)
+* [CORS](https://ru.wikipedia.org/wiki/Cross-origin_resource_sharing) settings
+* Full-Text Search
 * Use standard URLs (http://example.com/api/dinos and http://example.com/api/dinos/:dino_id)
 * Use the proper HTTP verbs to make it RESTful (GET, POST, PUT, and DELETE)
 * Return JSON data

@@ -3,6 +3,8 @@
 ## Features
 
 * Handle [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) for an item (let's use Dino for the case)
+* [CORS](https://ru.wikipedia.org/wiki/Cross-origin_resource_sharing) settings
+* Full-Text Search
 * Use standard URLs (http://example.com/api/dinos and http://example.com/api/dinos/:dino_id)
 * Use the proper HTTP verbs to make it RESTful (GET, POST, PUT, and DELETE)
 * Return JSON data
@@ -32,7 +34,6 @@
 $ git clone https://github.com/dkarmalita/express4-sample.git
 $ cd express4-sample/mongodb
 $ npm install 
-$ npm run dev
 ```
 
 ## Development
@@ -44,4 +45,55 @@ $ npm run dev
 `npm clean` - remove *node_modules*
 
 
+## Test Queries (cURL)
 
+_Ping API_
+```
+curl --request GET \
+  --url http://localhost:8080/api
+```
+
+_Create Dino_
+```
+curl --request POST \
+  --url http://localhost:8080/api/dinos \
+  --header 'content-type: application/x-www-form-urlencoded' \
+  --data name=Dino
+```
+
+_List Dinos_
+```
+curl --request GET \
+  --url http://localhost:8080/api/dinos \
+  --header 'content-type: application/x-www-form-urlencoded'
+```
+
+_Search (List) Dinos_
+```
+curl --request GET \
+  --url 'http://localhost:8080/api/dinos?q=Mr' \
+  --header 'content-type: application/x-www-form-urlencoded'
+```
+
+_Get Dino_
+```
+curl --request GET \
+  --url http://localhost:8080/api/dinos/5845472b82e58407ac956f45 \
+  --header 'content-type: application/x-www-form-urlencoded'
+```
+
+_Update Dino_
+```
+curl --request PUT \
+  --url http://localhost:8080/api/dinos/5845472b82e58407ac956f45 \
+  --header 'content-type: application/x-www-form-urlencoded' \
+  --data name=Mr.Dino
+```
+
+_Delete Dino_
+```
+curl --request DELETE \
+  --url http://localhost:8080/api/dinos/584547f6fe870207c894595f \
+  --header 'content-type: application/x-www-form-urlencoded' \
+  --data name=Dino
+```
