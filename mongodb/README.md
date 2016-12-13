@@ -97,3 +97,8 @@ curl --request DELETE \
   --header 'content-type: application/x-www-form-urlencoded' \
   --data name=Dino
 ```
+
+## HTTPS requests
+
+All requests listed above, can be sent to the HTTPS port
+`https://localhost:3443`

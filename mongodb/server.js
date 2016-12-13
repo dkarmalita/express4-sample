@@ -1,14 +1,16 @@
 // BASIC SERUP
 // ===============================================================================
 
-let express    = require('express'),        // call express
-    router     = express.Router(),          // get an instance of the express Router
-    app        = express(),                 // define our app using express
-    bodyParser = require('body-parser'),
-    mongoose   = require('mongoose')        // MongoDB ORM
+let express         = require('express'),        // call express
+    router          = express.Router(),          // get an instance of the express Router
+    fs              = require("fs"),
+    app             = express(),                 // define our app using express
+    http            = require('http'),
+    https           = require('https'),
+    bodyParser      = require('body-parser'),
+    mongoose        = require('mongoose')        // MongoDB ORM
 
-const port = process.env.PORT || 8080
-// Set server's port
+const HTTP_PORT     = process.env.PORT || 8080
 
 const MDB_URL = 'mongodb://user:password@ds119548.mlab.com:19548/express4-sample'
 // Refer MongoDB host
@@ -23,6 +25,26 @@ app.use(bodyParser.json())
 // It allows to get all of the data from POST
 
 
+// HTTPS SETUP
+// ===============================================================================
+
+const HTTPS_PORT    = 3443
+
+const httpsOptions = {
+  key: fs.readFileSync('./ssl-serts/private.key'),
+  cert: fs.readFileSync('./ssl-serts/certificate.pem')
+};
+// https (ssl) configuration
+/*  # The following line will generate the sertificates 
+    # suitable for test purposes on local computer
+    openssl genrsa 1024 > private.key
+    openssl req -new -key private.key -out cert.csr
+    openssl x509 -req -in cert.csr -signkey private.key -out certificate.pem
+
+    # how to use with Postman
+    # http://blog.getpostman.com/2014/01/28/using-self-signed-certificates-with-postman/
+ */
+
 // SETUP MIDDLEWARE
 // ===============================================================================
 
@@ -34,7 +56,7 @@ router.use((req, res, next) => {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     // CORS filtering
 
-    console.log(req.method, req.url);
+    console.log(req.method, req.url, req.secure);
     // Job login
 
     next(); 
@@ -192,7 +214,15 @@ mongoose.connection
 // STARTING THE SERVER
 // ===============================================================================
 
-        app.listen(port)
-        console.log('Dinos happens on port ' + port)
+        let httpsServer = https.createServer(httpsOptions, app).listen(HTTPS_PORT, () => {
+            console.log('🎃  HTTPS Server listening on port ' + HTTPS_PORT);
+        })
+
+        let httpServer = http.createServer(app).listen(HTTP_PORT, () => {
+          console.log('🌍  HTTP Server listening on port ' + HTTP_PORT);
+        })
+
+        // app.listen(port)
+        // console.log('Dinos happens on port ' + port)
 
 });
