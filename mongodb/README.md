@@ -11,6 +11,7 @@
 * Use ES6 promises
 * Log all requests to the console
 * Use [MongoDB](https://www.mongodb.com) database ([mLab](https://mlab.com) free sandbox service)
+* HTTP and HTTPS support
 
 ## Overview of the routes
 
