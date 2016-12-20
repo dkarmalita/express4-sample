@@ -10,6 +10,7 @@
 * Return JSON data
 * Use ES6 promises
 * Log all requests to the console
+* HTTP and HTTPS support
 
 ## Overview of the routes
 
@@ -29,5 +30,5 @@
 
 ## Variants
 
-* __mongodb__ - [MongoDB](https://www.mongodb.com) ([mLab](https://mlab.com) free sandbox service) based sample. See _mongodb/README.md_ for details.
+* __mongodb__ - [MongoDB](https://www.mongodb.com) ([mLab](https://mlab.com) free sandbox service) based sample. See [mongodb/README.md](https://github.com/dkarmalita/express4-sample/tree/master/mongodb) for details.
 
